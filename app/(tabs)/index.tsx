@@ -5,48 +5,48 @@ import SearchSection from "@/components/weather/SearchSection";
 import TemperatureDisplay from "@/components/weather/TemperatureDisplay";
 import WeatherDescription from "@/components/weather/WeatherDescription";
 import WeatherIcon from "@/components/weather/WeatherIcon";
-import { WeatherData } from "@/hooks/types/weather";
+import { useWeather } from "@/context/WeatherContext";
 import { LocationResult } from "@/hooks/useLocation";
-import React, { useState } from "react";
+import { useWeatherAPI } from "@/hooks/useWeatherAPI";
+import React from "react";
 import { Text } from "react-native";
 
 const fond = require("../../assets/images/fond.png");
 
 export default function HomeScreen() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
-  const [cityName, setCityName] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  const {
+    weatherData,
+    setWeatherData,
+    cityName,
+    setCityName,
+    isLoading,
+    setIsLoading,
+    error,
+    setError,
+  } = useWeather();
+  const { fetchWeatherData } = useWeatherAPI();
 
   const handleLocationFound = async (
     location: LocationResult,
     name: string
   ) => {
     setIsLoading(true);
+    setIsLoading(true);
     setError(null);
     setCityName(name);
-
-    try {
-      const response = await fetch(
-        `https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current_weather=true&timezone=auto`
-      );
-
-      if (!response.ok) {
-        throw new Error("Erreur météo");
-      }
-      const data = await response.json();
+    const data = await fetchWeatherData(location);
+    if (data) {
       setWeatherData(data);
-    } catch {
-      setError("impossible de récupérer la météo");
-    } finally {
-      setIsLoading(false);
+    } else {
+      setError("Impossible de récupérer la météo");
     }
+    setIsLoading(false);
   };
 
   const handleError = (errorMessage: string) => {
     setError(errorMessage);
-    setIsLoading(false);
   };
+
   return (
     <Container backgroundImage={fond}>
       <Section style={{ flex: 2 }}>
@@ -84,7 +84,6 @@ export default function HomeScreen() {
         />
       </Section>
       <Section style={{ flex: 1 }}>
-        {/* Espace pour les prévisions */}
         <></>
       </Section>
     </Container>
