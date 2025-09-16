@@ -9,7 +9,6 @@ const fond = require("../../assets/images/fond.png");
 
 export default function ForecastScreen() {
   const { weatherData, cityName, isLoading } = useWeather();
-
   // Transformation des données avec UseMemo pour optimiser les performances
   const forecastData = useMemo(() => {
     if (!weatherData?.daily) return [];

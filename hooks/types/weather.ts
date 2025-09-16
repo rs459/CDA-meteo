@@ -5,20 +5,24 @@ export interface WeatherData {
     windspeed: number;
     winddirection: number;
   };
-  daily?: {
-    time: string[];
-    weathercode: number[];
-    temperature_2m_max: number[];
-    temperature_2m_min: number[];
+  daily: {
+    time?: string[];
+    weathercode?: number[];
+    temperature_2m_max?: number[];
+    temperature_2m_min?: number[];
+    sunrise: string[];
+    sunset: string[];
   };
   hourly?: {
     relative_humidity_2m: number[];
   };
 }
+
 export interface Location {
   latitude: number;
   longitude: number;
 }
+
 export interface FavoriteCity {
   id: string;
   name: string;
@@ -46,4 +50,9 @@ export interface WeatherContextType {
   addToFavorites: (city: FavoriteCity) => Promise<void>;
   removeFromFavorites: (cityId: string) => Promise<void>;
   loadFavorites: () => Promise<void>;
+  // Lever et coucher du soleil
+  sunrise: string | null;
+  setSunrise: (time: string | null) => void;
+  sunset: string | null;
+  setSunset: (time: string | null) => void;
 }

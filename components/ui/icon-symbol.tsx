@@ -22,6 +22,8 @@ const MAPPING = {
   "chevron.left.forwardslash.chevron.right": "code",
   "chevron.right": "chevron-right",
   calendar: "calendar-month",
+  star: "star-outline",
+  "star.fill": "star",
 } as IconMapping;
 
 /**

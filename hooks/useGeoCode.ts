@@ -19,7 +19,7 @@ export function useGeocode() {
     setError(null);
     try {
       const response = await fetch(
-        `https://geocodingapi.openmeteo.com/v1/search?name=${encodeURIComponent(
+        `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(
           cityName
         )}&count=1&language=fr&format=json`
       );

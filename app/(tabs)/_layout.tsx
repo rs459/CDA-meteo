@@ -28,8 +28,21 @@ export default function TabLayout() {
         name="forecast"
         options={{
           title: "Prévisions",
-          tabBarIcon: ({ color }) => (
+          tabBarIcon: ({ color, focused }) => (
             <IconSymbol size={28} name="calendar" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="favorites"
+        options={{
+          title: "Favoris",
+          tabBarIcon: ({ color, focused }) => (
+            <IconSymbol
+              size={28}
+              name={focused ? "star.fill" : "star"}
+              color={color}
+            />
           ),
         }}
       />

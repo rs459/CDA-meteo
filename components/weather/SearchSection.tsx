@@ -32,12 +32,7 @@ export default function SearchSection({
           latitude: cityResult.latitude,
           longitude: cityResult.longitude,
         };
-        onLocationFound(
-          location,
-          `${cityResult.name},
-            
-            ${cityResult.country}`
-        );
+        onLocationFound(location, `${cityResult.name}, ${cityResult.country}`);
         setSearchText("");
       } else {
         onError("Ville non trouvée. Vérifiez l'orthographe.");

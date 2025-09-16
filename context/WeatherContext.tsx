@@ -16,6 +16,8 @@ export function WeatherProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [favorites, setFavorites] = useState<FavoriteCity[]>([]);
+  const [sunrise, setSunrise] = useState<string | null>(null);
+  const [sunset, setSunset] = useState<string | null>(null);
 
   // Logique des favoris
   const saveFavorites = async (newFavorites: FavoriteCity[]) => {
@@ -70,6 +72,10 @@ export function WeatherProvider({ children }: { children: ReactNode }) {
     addToFavorites,
     removeFromFavorites,
     loadFavorites,
+    sunrise,
+    setSunrise,
+    sunset,
+    setSunset,
   };
   return (
     <WeatherContext.Provider value={value}>{children}</WeatherContext.Provider>
