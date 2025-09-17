@@ -12,7 +12,7 @@ export function useWeatherAPI() {
     setError(null);
     try {
       const response = await fetch(
-        `https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current_weather=true&daily=weathercode,temperature_2m_max,temperature_2m_min&hourly=relative_humidity_2m&timezone=auto&forecast_days=7`
+        `https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current_weather=true&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset&hourly=relative_humidity_2m&timezone=auto&forecast_days=7`
       );
       if (!response.ok) {
         throw new Error(`Erreur API: ${response.status}`);
