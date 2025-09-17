@@ -14,8 +14,6 @@ import { LocationResult } from "@/hooks/useLocation";
 import React from "react";
 import { Text, View } from "react-native";
 
-const fond = require("../../assets/images/fond.png");
-
 export default function HomeScreen() {
   const {
     weatherData,
@@ -49,8 +47,6 @@ export default function HomeScreen() {
         !data.current_weather ||
         !data.daily ||
         !data.daily.sunset ||
-        !data.daily.sunrise ||
-        !data.daily.sunset ||
         !data.daily.sunrise
       ) {
         throw new Error("Données météo actuelles non disponibles");
@@ -76,7 +72,7 @@ export default function HomeScreen() {
   };
 
   return (
-    <Container backgroundImage={fond}>
+    <Container>
       <Section style={{ flex: 2 }}>
         {isLoading ? (
           <LoadingState message="Chargement..." />

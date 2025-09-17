@@ -23,7 +23,7 @@ export default function ForecastScreen() {
 
   if (isLoading) {
     return (
-      <Container backgroundImage={fond}>
+      <Container>
         <LoadingState message="Chargement des prévisions..." />
       </Container>
     );
@@ -31,13 +31,13 @@ export default function ForecastScreen() {
 
   if (!weatherData?.daily || forecastData.length === 0) {
     return (
-      <Container backgroundImage={fond}>
+      <Container>
         <LoadingState message="Aucune donnée de prévision disponible." />
       </Container>
     );
   }
   return (
-    <Container backgroundImage={fond}>
+    <Container>
       <ForecastHeader cityName={cityName || "Ville inconnue"} />
       <ForecastList forecastData={forecastData} />
     </Container>
